@@ -36,11 +36,11 @@ class BytePrimitive {
 
         return {
             get () {
-                return _this.read(this.uint8, position + this.offset);
+                return _this.read(this.uint8a, position + this.offset);
             },
 
             set (value) {
-                return _this.write(this.uint8, position + this.offset, value);
+                return _this.write(this.uint8a, position + this.offset, value);
             },
 
             enumerable: true
@@ -50,11 +50,11 @@ class BytePrimitive {
 
 const Uint8 = new BytePrimitive({
     size: 1,
-    read (uint8, position) {
-        return uint8[position];
+    read (uint8a, position) {
+        return uint8a[position];
     },
-    write (uint8, position, value) {
-        uint8[position] = value;
+    write (uint8a, position, value) {
+        uint8a[position] = value;
         return value;
     }
 });
@@ -62,30 +62,30 @@ const Uint8 = new BytePrimitive({
 const HOSTLE_BE16 = {
     size: 2,
     // toBytes: Defined by instance.
-    read (uint8, position) {
-        this.bytes[1] = uint8[position + 0];
-        this.bytes[0] = uint8[position + 1];
+    read (uint8a, position) {
+        this.bytes[1] = uint8a[position + 0];
+        this.bytes[0] = uint8a[position + 1];
         return this.toBytes[0];
     },
-    write (uint8, position, value) {
+    write (uint8a, position, value) {
         this.toBytes[0] = value;
-        uint8[position + 0] = this.bytes[1];
-        uint8[position + 1] = this.bytes[0];
+        uint8a[position + 0] = this.bytes[1];
+        uint8a[position + 1] = this.bytes[0];
         return value;
     }
 };
 const HOSTBE_BE16 = {
     size: 2,
     // toBytes: Defined by instance.
-    read (uint8, position) {
-        this.bytes[0] = uint8[position + 0];
-        this.bytes[1] = uint8[position + 1];
+    read (uint8a, position) {
+        this.bytes[0] = uint8a[position + 0];
+        this.bytes[1] = uint8a[position + 1];
         return this.toBytes[0];
     },
-    write (uint8, position, value) {
+    write (uint8a, position, value) {
         this.toBytes[0] = value;
-        uint8[position + 0] = this.bytes[0];
-        uint8[position + 1] = this.bytes[1];
+        uint8a[position + 0] = this.bytes[0];
+        uint8a[position + 1] = this.bytes[1];
         return value;
     }
 };
@@ -108,38 +108,38 @@ const Int16BE = new BytePrimitive(Object.assign({}, BE16, {
 const HOSTLE_BE32 = {
     size: 4,
     // toBytes: Defined by instance.
-    read (uint8, position) {
-        this.bytes[3] = uint8[position + 0];
-        this.bytes[2] = uint8[position + 1];
-        this.bytes[1] = uint8[position + 2];
-        this.bytes[0] = uint8[position + 3];
+    read (uint8a, position) {
+        this.bytes[3] = uint8a[position + 0];
+        this.bytes[2] = uint8a[position + 1];
+        this.bytes[1] = uint8a[position + 2];
+        this.bytes[0] = uint8a[position + 3];
         return this.toBytes[0];
     },
-    write (uint8, position, value) {
+    write (uint8a, position, value) {
         this.toBytes[0] = value;
-        uint8[position + 0] = this.bytes[3];
-        uint8[position + 1] = this.bytes[2];
-        uint8[position + 2] = this.bytes[1];
-        uint8[position + 3] = this.bytes[0];
+        uint8a[position + 0] = this.bytes[3];
+        uint8a[position + 1] = this.bytes[2];
+        uint8a[position + 2] = this.bytes[1];
+        uint8a[position + 3] = this.bytes[0];
         return value;
     }
 };
 const HOSTBE_BE32 = {
     size: 4,
     // toBytes: Defined by instance.
-    read (uint8, position) {
-        this.bytes[0] = uint8[position + 0];
-        this.bytes[1] = uint8[position + 1];
-        this.bytes[2] = uint8[position + 2];
-        this.bytes[3] = uint8[position + 3];
+    read (uint8a, position) {
+        this.bytes[0] = uint8a[position + 0];
+        this.bytes[1] = uint8a[position + 1];
+        this.bytes[2] = uint8a[position + 2];
+        this.bytes[3] = uint8a[position + 3];
         return this.toBytes[0];
     },
-    write (uint8, position, value) {
+    write (uint8a, position, value) {
         this.toBytes[0] = value;
-        uint8[position + 0] = this.bytes[0];
-        uint8[position + 1] = this.bytes[1];
-        uint8[position + 2] = this.bytes[2];
-        uint8[position + 3] = this.bytes[3];
+        uint8a[position + 0] = this.bytes[0];
+        uint8a[position + 1] = this.bytes[1];
+        uint8a[position + 2] = this.bytes[2];
+        uint8a[position + 3] = this.bytes[3];
         return value;
     }
 };
@@ -183,30 +183,30 @@ const Uint32LE = new BytePrimitive(Object.assign({}, LE32, {
 
 const HOSTLE_BEDOUBLE = {
     size: 8,
-    read (uint8, position) {
-        this.bytes[7] = uint8[position + 0];
-        this.bytes[6] = uint8[position + 1];
-        this.bytes[5] = uint8[position + 2];
-        this.bytes[4] = uint8[position + 3];
-        this.bytes[3] = uint8[position + 4];
-        this.bytes[2] = uint8[position + 5];
-        this.bytes[1] = uint8[position + 6];
-        this.bytes[0] = uint8[position + 7];
+    read (uint8a, position) {
+        this.bytes[7] = uint8a[position + 0];
+        this.bytes[6] = uint8a[position + 1];
+        this.bytes[5] = uint8a[position + 2];
+        this.bytes[4] = uint8a[position + 3];
+        this.bytes[3] = uint8a[position + 4];
+        this.bytes[2] = uint8a[position + 5];
+        this.bytes[1] = uint8a[position + 6];
+        this.bytes[0] = uint8a[position + 7];
         return this.toBytes[0];
     }
 };
 
 const HOSTBE_BEDOUBLE = {
     size: 8,
-    read (uint8, position) {
-        this.bytes[7] = uint8[position + 0];
-        this.bytes[6] = uint8[position + 1];
-        this.bytes[5] = uint8[position + 2];
-        this.bytes[4] = uint8[position + 3];
-        this.bytes[3] = uint8[position + 4];
-        this.bytes[2] = uint8[position + 5];
-        this.bytes[1] = uint8[position + 6];
-        this.bytes[0] = uint8[position + 7];
+    read (uint8a, position) {
+        this.bytes[7] = uint8a[position + 0];
+        this.bytes[6] = uint8a[position + 1];
+        this.bytes[5] = uint8a[position + 2];
+        this.bytes[4] = uint8a[position + 3];
+        this.bytes[3] = uint8a[position + 4];
+        this.bytes[2] = uint8a[position + 5];
+        this.bytes[1] = uint8a[position + 6];
+        this.bytes[0] = uint8a[position + 7];
         return this.toBytes[0];
     }
 };
@@ -226,20 +226,20 @@ class FixedAsciiString extends BytePrimitive {
     constructor (size) {
         super({
             size,
-            read (uint8, position) {
+            read (uint8a, position) {
                 let str = '';
                 for (let i = 0; i < size; i++) {
-                    const code = uint8[position + i];
+                    const code = uint8a[position + i];
                     assert(code <= 127, 'Non-ascii character in FixedAsciiString');
                     str += String.fromCharCode(code);
                 }
                 return str;
             },
-            write (uint8, position, value) {
+            write (uint8a, position, value) {
                 for (let i = 0; i < size; i++) {
                     const code = value.charCodeAt(i);
                     assert(code <= 127, 'Non-ascii character in FixedAsciiString');
-                    uint8[position + i] = code;
+                    uint8a[position + i] = code;
                 }
                 return value;
             }

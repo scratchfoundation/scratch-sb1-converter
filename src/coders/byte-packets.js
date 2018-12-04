@@ -1,6 +1,6 @@
 class Packet {
-    constructor (uint8 = new Uint8Array(this.size), offset = 0) {
-        this.uint8 = uint8;
+    constructor (uint8a = new Uint8Array(this.size), offset = 0) {
+        this.uint8a = uint8a;
         this.offset = offset;
     }
 
