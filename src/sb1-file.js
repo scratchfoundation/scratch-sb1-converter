@@ -6,6 +6,9 @@ import {TypeIterator} from './squeak/type-iterator';
 import {ReferenceFixer} from './squeak/reference-fixer';
 import {ImageMediaData, SoundMediaData} from './squeak/types';
 
+import {toSb2FakeZipApi} from './to-sb2/fake-zip';
+import {toSb2Json} from './to-sb2/json-generator';
+
 import {SB1Header, SB1Signature} from './sb1-file-packets';
 
 class SB1File {
@@ -23,6 +26,22 @@ class SB1File {
 
         this.dataHeader = this.stream.readStruct(SB1Header);
         this.dataHeader.validate();
+    }
+
+    get json () {
+        return toSb2Json({
+            info: this.info(),
+            stageData: this.data(),
+            images: this.images(),
+            sounds: this.sounds()
+        });
+    }
+
+    get zip () {
+        return toSb2FakeZipApi({
+            images: this.images(),
+            sounds: this.sounds()
+        });
     }
 
     view () {

@@ -15,6 +15,14 @@ SB1View.register(JSPrimitiveRenderer);
 SB1View.register(ObjectRenderer);
 SB1View.register(ViewableRenderer);
 
+const createDownload = (name, mime, content) => {
+    const anchor = document.createElement('a');
+    anchor.download = name;
+    anchor.href = URL.createObjectURL(new Blob([content], {type: mime}));
+    anchor.innerText = name;
+    return anchor;
+};
+
 let last = null;
 const readFile = f => {
     const reader = new FileReader();
@@ -32,7 +40,9 @@ const readFile = f => {
             new SB1View(sb1.info(), 'info').element,
             new SB1View(sb1.data(), 'data').element,
             new SB1View(sb1.images(), 'images').element,
-            new SB1View(sb1.sounds(), 'sounds').element
+            new SB1View(sb1.sounds(), 'sounds').element,
+            new SB1View(sb1.json, 'json').element,
+            createDownload(`${f.name}.json`, 'application/json', JSON.stringify(sb1.json))
         ];
         last.forEach(document.body.appendChild, document.body);
     };
