@@ -6,8 +6,8 @@ env:
   global:
   - NODE_ENV=production
   matrix:
-  - NPM_SCRIPT="test:unit -- --jobs=4"
-  - NPM_SCRIPT="test:integration -- --jobs=4"
+  - NPM_SCRIPT="test:ci:unit -- --jobs=4"
+  - NPM_SCRIPT="test:ci:integration -- --jobs=4"
 cache:
   directories:
   - "$HOME/.npm"
