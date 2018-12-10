@@ -6,6 +6,10 @@ import {IS_HOST_LITTLE_ENDIAN, Int16BE, BytePrimitive, Uint8, Uint32BE} from '..
 
 const BUFFER_TOO_BIG = 10 * 1024 * 1024;
 
+/**
+ * @const ReferenceBE
+ * @type BytePrimitive
+ */
 let ReferenceBE;
 if (IS_HOST_LITTLE_ENDIAN) {
     ReferenceBE = new BytePrimitive({
@@ -31,6 +35,10 @@ if (IS_HOST_LITTLE_ENDIAN) {
     });
 }
 
+/**
+ * @const LargeInt
+ * @type BytePrimitive
+ */
 const LargeInt = new BytePrimitive({
     sizeOf (uint8a, position) {
         const count = Int16BE.read(uint8a, position);
@@ -48,6 +56,10 @@ const LargeInt = new BytePrimitive({
     }
 });
 
+/**
+ * @const AsciiString
+ * @type BytePrimitive
+ */
 const AsciiString = new BytePrimitive({
     sizeOf (uint8a, position) {
         const count = Uint32BE.read(uint8a, position);
@@ -65,6 +77,10 @@ const AsciiString = new BytePrimitive({
     }
 });
 
+/**
+ * @const Bytes
+ * @type BytePrimitive
+ */
 const Bytes = new BytePrimitive({
     sizeOf (uint8a, position) {
         return Uint32BE.size + Uint32BE.read(uint8a, position);
@@ -79,6 +95,10 @@ const Bytes = new BytePrimitive({
     }
 });
 
+/**
+ * @const SoundBytes
+ * @type BytePrimitive
+ */
 const SoundBytes = new BytePrimitive({
     sizeOf (uint8a, position) {
         return Uint32BE.size + (Uint32BE.read(uint8a, position) * 2);
@@ -94,6 +114,10 @@ const SoundBytes = new BytePrimitive({
     }
 });
 
+/**
+ * @const Bitmap32BE
+ * @type BytePrimitive
+ */
 const Bitmap32BE = new BytePrimitive({
     sizeOf (uint8a, position) {
         return Uint32BE.size + (Uint32BE.read(uint8a, position) * Uint32BE.size);
@@ -121,6 +145,10 @@ if (typeof TextDecoder === 'undefined') {
     decoder = new TextDecoder();
 }
 
+/**
+ * @const UTF8
+ * @type BytePrimitive
+ */
 const UTF8 = new BytePrimitive({
     sizeOf (uint8a, position) {
         return Uint32BE.size + Uint32BE.read(uint8a, position);
@@ -135,6 +163,10 @@ const UTF8 = new BytePrimitive({
     }
 });
 
+/**
+ * @const OpaqueColor
+ * @type BytePrimitive
+ */
 const OpaqueColor = new BytePrimitive({
     size: 4,
     read (uint8a, position) {
@@ -147,6 +179,10 @@ const OpaqueColor = new BytePrimitive({
     }
 });
 
+/**
+ * @const TranslucentColor
+ * @type BytePrimitive
+ */
 const TranslucentColor = new BytePrimitive({
     size: 5,
     read (uint8a, position) {

@@ -6,8 +6,20 @@ import {FieldObject} from './field-object';
 import {value as valueOf} from './fields';
 import {TYPES} from './ids';
 
+/**
+ * @extends FieldObject
+ */
 class PointData extends FieldObject.define({
+    /**
+     * @memberof PointData#
+     * @type {Value}
+     */
     X: 0,
+
+    /**
+     * @memberof PointData#
+     * @type {Value}
+     */
     Y: 1
 }) {}
 
@@ -40,14 +52,43 @@ const _bgra2rgbaInPlace = uint8a => {
     return uint8a;
 };
 
+/**
+ * @extends FieldObject
+ */
 class ImageData extends FieldObject.define({
+    /**
+     * @memberof ImageData#
+     * @type {Value}
+     */
     WIDTH: 0,
+
+    /**
+     * @memberof ImageData#
+     * @type {Value}
+     */
     HEIGHT: 1,
+
+    /**
+     * @memberof ImageData#
+     * @type {Value}
+     */
     DEPTH: 2,
-    SOMETHING: 3,
+
+    /**
+     * @memberof ImageData#
+     * @type {Value}
+     */
     BYTES: 4,
+
+    /**
+     * @memberof ImageData#
+     * @type {Value}
+     */
     COLORMAP: 5
 }) {
+    /**
+     * @type {Uint8Array}
+     */
     get decoded () {
         if (!this._decoded) {
             this._decoded = _bgra2rgbaInPlace(new Uint8Array(
@@ -63,6 +104,9 @@ class ImageData extends FieldObject.define({
         return this._decoded;
     }
 
+    /**
+     * @type {string}
+     */
     get extension () {
         return 'uncompressed';
     }
