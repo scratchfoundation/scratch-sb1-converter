@@ -7,7 +7,20 @@ import {
 import {BuiltinObjectHeader, FieldObjectHeader, Header, Reference, Value} from './fields';
 import {TYPES} from './ids';
 
+/**
+ * Consume values for the byte stream with a iterator-like interface.
+ */
 class Consumer {
+    /**
+     * @param {object} options - Define the consumer.
+     * @param {function} [options.type=Value] - The {@link Field} type to
+     * create.
+     * @param {BytePrimitive} options.read - How to read the third Field
+     * argument.
+     * @param {function} [options.value] - How to produce the third Field
+     * argument from a stream. Defaults to `stream =>
+     * stream.read(options.read)`.
+     */
     constructor ({
         type = Value,
         read,
@@ -17,6 +30,13 @@ class Consumer {
         this.value = value;
     }
 
+    /**
+     * @param {ByteStream} stream - Stream to read from.
+     * @param {TYPES} classId - FieldObject TYPES identifying the value to read.
+     * @param {number} position - Position in the stream the classId was read
+     * from.
+     * @returns {{value: *, done: boolean}} - An iterator.next() return value.
+     */
     next (stream, classId, position) {
         return {
             value: new this.type(classId, position, this.value(stream)),
@@ -25,6 +45,10 @@ class Consumer {
     }
 }
 
+/**
+ * @const CONSUMER_PROTOS
+ * @type {Object.<number, {type, read, value}>}
+ */
 const CONSUMER_PROTOS = {
     [TYPES.NULL]: {value: () => null},
     [TYPES.TRUE]: {value: () => true},
@@ -61,6 +85,10 @@ const CONSUMER_PROTOS = {
     [TYPES.OBJECT_REF]: {type: Reference, read: ReferenceBE}
 };
 
+/**
+ * @const CONSUMERS
+ * @type {Array.<Consumer|null>}
+ */
 const CONSUMERS = Array.from(
     {length: 256},
     (_, i) => {
@@ -74,16 +102,29 @@ const builtinConsumer = new Consumer({
     value: () => null
 });
 
+/**
+ * Field iterator.
+ */
 class FieldIterator {
+    /**
+     * @param {ArrayBuffer} buffer - Buffer to read from.
+     * @param {number} position - Position in buffer to start at.
+     */
     constructor (buffer, position) {
         this.buffer = buffer;
         this.stream = new ByteStream(buffer, position);
     }
 
+    /**
+     * @returns {FieldIterator} - Returns this.
+     */
     [Symbol.iterator] () {
         return this;
     }
 
+    /**
+     * @returns {{value: *, done: boolean}} - An iterator.next() value.
+     */
     next () {
         if (this.stream.position >= this.stream.uint8a.length) {
             return {

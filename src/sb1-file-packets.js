@@ -3,10 +3,29 @@ import {assert} from './util/assert';
 import {Packet} from './coders/byte-packets';
 import {FixedAsciiString, Uint8, Uint32BE} from './coders/byte-primitives';
 
+/**
+ * @augments Packet
+ */
 class SB1Signature extends Packet.extend({
+    /**
+     * 10 byte ascii string equaling `'ScratchV01'` or `'ScratchV02'`.
+     * @type {string}
+     * @memberof SB1Signature#
+     */
     version: new FixedAsciiString(10),
+
+    /**
+     * Number of bytes in the info block.
+     * @type {number}
+     * @memberof SB1Signature#
+     */
     infoByteLength: Uint32BE
 }) {
+    /**
+     * Is this a valid SB1Signature?
+     * @method
+     * @throws {AssertionError} Throws if it is not valid.
+     */
     validate () {
         assert(
             this.equals({version: 'ScratchV01'}) ||

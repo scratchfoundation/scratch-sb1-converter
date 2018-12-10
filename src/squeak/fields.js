@@ -1,8 +1,30 @@
 import {TYPES} from './ids';
 
+/**
+ * An abstract value contained in a `.sb` file.
+ *
+ * `.sb` files are made up of two blocks of Fields. Each field in the binary
+ * file defines its "class" and is possibly followed by some binary data
+ * depending on the class. Each class explicitly defines what follows. Knowing
+ * all the possible classes each block can be broken up into a series of Field
+ * objects.
+ */
 class Field {
+    /**
+     * @param {TYPES} classId - The class identifier of this Field.
+     * @param {number} position - Byte position in the `.sb` file.
+     */
     constructor (classId, position) {
+        /**
+         * The class identifier of this Field.
+         * @type {TYPES}
+         */
         this.classId = classId;
+
+        /**
+         * Byte position in the `.sb` file.
+         * @type {number}
+         */
         this.position = position;
     }
 }
@@ -12,9 +34,24 @@ const valueOf = obj => {
     return obj;
 };
 
+/**
+ * A concrete value contained in a `.sb` file.
+ * @extends Field
+ */
 class Value extends Field {
+    /**
+     * @param {TYPES} classId - The class identifier of this Field.
+     * @param {number} position - Byte position in the `.sb` file.
+     * @param {*} value - A value decoded according to `classId` from an `.sb`
+     * file.
+     */
     constructor (classId, position, value) {
         super(classId, position);
+
+        /**
+         * A value decoded according to `classId` from an `.sb` file.
+         * @type {*}
+         */
         this.value = value;
     }
 
@@ -38,16 +75,49 @@ class Value extends Field {
     }
 }
 
+/**
+ * A header for a FieldObject representing its class and how many fields are in
+ * the object.
+ *
+ * The Fields following are header up to its size should be collected into a
+ * FieldObject.
+ * @extends Field
+ */
 class Header extends Field {
+    /**
+     * @param {TYPES} classId - The class identifier of this Field.
+     * @param {number} position - Byte position in the `.sb` file.
+     * @param {number} size - The number of fields to collect.
+     */
     constructor (classId, position, size) {
         super(classId, position);
+
+        /**
+         * The number of fields to collect.
+         * @type {number}
+         */
         this.size = size;
     }
 }
 
+/**
+ * A integer reference of an object in an array produced by TypeIterator of
+ * Values and FieldObjects.
+ * @extends Field
+ */
 class Reference extends Field {
+    /**
+     * @param {TYPES} classId - The class identifier of this Field.
+     * @param {number} position - Byte position in the `.sb` file.
+     * @param {number} index - The index this Reference refers to.
+     */
     constructor (classId, position, index) {
         super(classId, position);
+
+        /**
+         * The index this Reference refers to.
+         * @type {number}
+         */
         this.index = index;
     }
 
@@ -56,15 +126,36 @@ class Reference extends Field {
     }
 }
 
+/**
+ * An object header of 0 size.
+ * @extends Header
+ */
 class BuiltinObjectHeader extends Header {
     constructor (classId, position) {
         super(classId, position, 0);
     }
 }
 
+
+/**
+ * An object header with an id more than 99, a version, and a size.
+ * @extends Header
+ */
 class FieldObjectHeader extends Header {
+    /**
+     * @param {TYPES} classId - The class identifier of this Field.
+     * @param {number} position - Byte position in the `.sb` file.
+     * @param {number} version - The version of this instance of a certain
+     * value.
+     * @param {number} size - The number of fields in this object.
+     */
     constructor (classId, position, version, size) {
         super(classId, position, size);
+
+        /**
+         * The version of this instance of a certain value.
+         * @type {number}
+         */
         this.version = version;
     }
 }
