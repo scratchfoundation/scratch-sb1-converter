@@ -5,13 +5,13 @@ class ByteStream {
         this.buffer = buffer;
         this.position = position;
 
-        this.uint8 = new Uint8Array(this.buffer);
+        this.uint8a = new Uint8Array(this.buffer);
     }
 
     read (member) {
-        const value = member.read(this.uint8, this.position);
+        const value = member.read(this.uint8a, this.position);
         if (member.size === 0) {
-            this.position += member.sizeOf(this.uint8, this.position);
+            this.position += member.sizeOf(this.uint8a, this.position);
         } else {
             this.position += member.size;
         }
@@ -19,19 +19,19 @@ class ByteStream {
     }
 
     readStruct (StructType) {
-        const obj = new StructType(this.uint8, this.position);
+        const obj = new StructType(this.uint8a, this.position);
         this.position += StructType.size;
         return obj;
     }
 
     resize (needed) {
         if (this.buffer.byteLength < needed) {
-            const uint8 = this.uint8;
+            const uint8a = this.uint8a;
             const nextPowerOf2 = Math.pow(2, Math.ceil(Math.log(needed) / Math.log(2)));
             this.buffer = new ArrayBuffer(nextPowerOf2);
 
-            this.uint8 = new Uint8Array(this.buffer);
-            this.uint8.set(uint8);
+            this.uint8a = new Uint8Array(this.buffer);
+            this.uint8a.set(uint8a);
         }
     }
 
@@ -42,9 +42,9 @@ class ByteStream {
             this.resize(this.position + member.size);
         }
 
-        member.write(this.uint8, this.position, value);
+        member.write(this.uint8a, this.position, value);
         if (member.size === 0) {
-            this.position += member.writeSizeOf(this.uint8, this.position);
+            this.position += member.writeSizeOf(this.uint8a, this.position);
         } else {
             this.position += member.size;
         }
@@ -54,7 +54,7 @@ class ByteStream {
     writeStruct (StructType, data) {
         this.resize(this.position + StructType.size);
 
-        const st = Object.assign(new StructType(this.uint8, this.position), data);
+        const st = Object.assign(new StructType(this.uint8a, this.position), data);
         this.position += StructType.size;
         return st;
     }
@@ -65,7 +65,7 @@ class ByteStream {
         this.resize(this.position + (end - start));
 
         for (let i = start; i < end; i++) {
-            this.uint8[this.position + i - start] = bytes[i];
+            this.uint8a[this.position + i - start] = bytes[i];
         }
         this.position += end - start;
         return bytes;

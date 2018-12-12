@@ -2,6 +2,9 @@ import {ByteStream} from './coders/byte-stream';
 
 import {ByteTakeIterator} from './squeak/byte-take-iterator';
 import {FieldIterator} from './squeak/field-iterator';
+import {TypeIterator} from './squeak/type-iterator';
+import {ReferenceFixer} from './squeak/reference-fixer';
+import {ImageMediaData, SoundMediaData} from './squeak/types';
 
 import {SB1Header, SB1Signature} from './sb1-file-packets';
 
@@ -40,11 +43,61 @@ class SB1File {
         );
     }
 
+    infoTable () {
+        return new TypeIterator(this.infoRaw());
+    }
+
+    info () {
+        if (!this._info) {
+            this._info = new ReferenceFixer(this.infoTable()).table[0];
+        }
+        return this._info;
+    }
+
     dataRaw () {
         return new ByteTakeIterator(
             new FieldIterator(this.buffer, this.dataHeader.offset + SB1Header.size),
-            this.stream.uint8.length
+            this.stream.uint8a.length
         );
+    }
+
+    dataTable () {
+        return new TypeIterator(this.dataRaw());
+    }
+
+    dataFixed () {
+        if (!this._data) {
+            this._data = new ReferenceFixer(this.dataTable()).table;
+        }
+        return this._data;
+    }
+
+    data () {
+        return this.dataFixed()[0];
+    }
+
+    images () {
+        const unique = new Set();
+        return this.dataFixed().filter(obj => {
+            if (obj instanceof ImageMediaData) {
+                if (unique.has(obj.crc)) return false;
+                unique.add(obj.crc);
+                return true;
+            }
+            return false;
+        });
+    }
+
+    sounds () {
+        const unique = new Set();
+        return this.dataFixed().filter(obj => {
+            if (obj instanceof SoundMediaData) {
+                if (unique.has(obj.crc)) return false;
+                unique.add(obj.crc);
+                return true;
+            }
+            return false;
+        });
     }
 }
 

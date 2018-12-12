@@ -2,12 +2,14 @@ import {SB1File} from '../..';
 import {SB1View} from './view';
 
 import {ArrayRenderer} from './array';
+import {FieldObjectRenderer} from './field-object';
 import {FieldRenderer} from './field';
 import {JSPrimitiveRenderer} from './js-primitive';
 import {ObjectRenderer} from './object';
 import {ViewableRenderer} from './viewable';
 
 SB1View.register(ArrayRenderer);
+SB1View.register(FieldObjectRenderer);
 SB1View.register(FieldRenderer);
 SB1View.register(JSPrimitiveRenderer);
 SB1View.register(ObjectRenderer);
@@ -24,7 +26,13 @@ const readFile = f => {
         last = [
             new SB1View(sb1, 'file').element,
             new SB1View(Array.from(sb1.infoRaw()), 'raw - info').element,
-            new SB1View(Array.from(sb1.dataRaw()), 'raw - data').element
+            new SB1View(Array.from(sb1.dataRaw()), 'raw - data').element,
+            new SB1View(Array.from(sb1.infoTable()), 'table - info').element,
+            new SB1View(Array.from(sb1.dataTable()), 'table - data').element,
+            new SB1View(sb1.info(), 'info').element,
+            new SB1View(sb1.data(), 'data').element,
+            new SB1View(sb1.images(), 'images').element,
+            new SB1View(sb1.sounds(), 'sounds').element
         ];
         last.forEach(document.body.appendChild, document.body);
     };
