@@ -2,7 +2,7 @@
   "name": "scratch-sb1-converter",
   "version": "0.0.0",
   "description": "Scratch 1 (.sb) to Scratch 2 (.sb2) conversion library for Scratch 3.0",
-  "author": "Massachusetts Institute of Technology",
+  "author": "Scratch Foundation",
   "license": "BSD-3-Clause",
   "homepage": "https://github.com/LLK/scratch-sb1-converter#readme",
   "repository": {
