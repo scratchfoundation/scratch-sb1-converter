@@ -1,4 +1,6 @@
 import {CRC32} from '../coders/crc32';
+import {SqueakImage} from '../coders/squeak-image';
+import {SqueakSound} from '../coders/squeak-sound';
 
 import {FieldObject} from './field-object';
 import {value as valueOf} from './fields';
@@ -47,7 +49,18 @@ class ImageData extends FieldObject.define({
     COLORMAP: 5
 }) {
     get decoded () {
-        throw new Error('Not implemented');
+        if (!this._decoded) {
+            this._decoded = _bgra2rgbaInPlace(new Uint8Array(
+                new SqueakImage().decode(
+                    this.width.value,
+                    this.height.value,
+                    this.depth.value,
+                    this.bytes.value,
+                    this.colormap && this.colormap.map(color => color.valueOf())
+                ).buffer
+            ));
+        }
+        return this._decoded;
     }
 
     get extension () {
@@ -221,6 +234,15 @@ class UncompressedData extends FieldObject.define({
 
 export {UncompressedData};
 
+const reverseBytes16 = input => {
+    const uint8a = new Uint8Array(input);
+    for (let i = 0; i < uint8a.length; i += 2) {
+        uint8a[i] = input[i + 1];
+        uint8a[i + 1] = input[i];
+    }
+    return uint8a;
+};
+
 class SoundMediaData extends FieldObject.define({
     NAME: 0,
     UNCOMPRESSED: 1,
@@ -243,7 +265,16 @@ class SoundMediaData extends FieldObject.define({
     }
 
     get decoded () {
-        throw new Error('Not implemented');
+        if (!this._decoded) {
+            if (this.data && this.data.value) {
+                this._decoded = new SqueakSound(this.bitsPerSample.value).decode(
+                    this.data.value
+                );
+            } else {
+                this._decoded = new Int16Array(reverseBytes16(this.uncompressed.data.value.slice()).buffer);
+            }
+        }
+        return this._decoded;
     }
 
     get crc () {
@@ -257,7 +288,10 @@ class SoundMediaData extends FieldObject.define({
     }
 
     get sampleCount () {
-        throw new Error('Not implemented');
+        if (this.data && this.data.value) {
+            return SqueakSound.samples(this.bitsPerSample.value, this.data.value);
+        }
+        return this.uncompressed.data.value.length / 2;
     }
 
     get extension () {
