@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Reference - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AssertionError.html">AssertionError</a></li><li><a href="BuiltinObjectHeader.html">BuiltinObjectHeader</a></li><li><a href="BytePrimitive.html">BytePrimitive</a><ul class='methods'><li data-type='method'><a href="BytePrimitive.html#asPropertyObject">asPropertyObject</a></li><li data-type='method'><a href="BytePrimitive.html#read">read</a></li></ul></li><li><a href="ByteStream.html">ByteStream</a><ul class='methods'><li data-type='method'><a href="ByteStream.html#read">read</a></li><li data-type='method'><a href="ByteStream.html#readStruct">readStruct</a></li><li data-type='method'><a href="ByteStream.html#resize">resize</a></li><li data-type='method'><a href="ByteStream.html#write">write</a></li><li data-type='method'><a href="ByteStream.html#writeBytes">writeBytes</a></li><li data-type='method'><a href="ByteStream.html#writeStruct">writeStruct</a></li></ul></li><li><a href="ByteTakeIterator.html">ByteTakeIterator</a><ul class='methods'><li data-type='method'><a href="ByteTakeIterator.html#next">next</a></li></ul></li><li><a href="Consumer.html">Consumer</a><ul class='methods'><li data-type='method'><a href="Consumer.html#next">next</a></li></ul></li><li><a href="Field.html">Field</a></li><li><a href="FieldIterator.html">FieldIterator</a><ul class='methods'><li data-type='method'><a href="FieldIterator.html#next">next</a></li></ul></li><li><a href="FieldObject.html">FieldObject</a><ul class='methods'><li data-type='method'><a href="FieldObject.html#.define">define</a></li></ul></li><li><a href="FieldObjectHeader.html">FieldObjectHeader</a></li><li><a href="FixedAsciiString.html">FixedAsciiString</a><ul class='methods'><li data-type='method'><a href="FixedAsciiString.html#asPropertyObject">asPropertyObject</a></li><li data-type='method'><a href="FixedAsciiString.html#read">read</a></li></ul></li><li><a href="Header.html">Header</a></li><li><a href="ImageData.html">ImageData</a></li><li><a href="Packet.html">Packet</a><ul class='methods'><li data-type='method'><a href="Packet.html#.extend">extend</a></li><li data-type='method'><a href="Packet.html#.initConstructor">initConstructor</a></li><li data-type='method'><a href="Packet.html#equals">equals</a></li></ul></li><li><a href="PointData.html">PointData</a></li><li><a href="Reference.html">Reference</a></li><li><a href="SB1Signature.html">SB1Signature</a><ul class='methods'><li data-type='method'><a href="SB1Signature.html#equals">equals</a></li><li data-type='method'><a href="SB1Signature.html#validate">validate</a></li></ul></li><li><a href="Value.html">Value</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AsciiString">AsciiString</a></li><li><a href="global.html#Bitmap32BE">Bitmap32BE</a></li><li><a href="global.html#Bytes">Bytes</a></li><li><a href="global.html#CONSUMER_PROTOS">CONSUMER_PROTOS</a></li><li><a href="global.html#CONSUMERS">CONSUMERS</a></li><li><a href="global.html#DoubleBE">DoubleBE</a></li><li><a href="global.html#Int16BE">Int16BE</a></li><li><a href="global.html#Int32BE">Int32BE</a></li><li><a href="global.html#IS_HOST_LITTLE_ENDIAN">IS_HOST_LITTLE_ENDIAN</a></li><li><a href="global.html#LargeInt">LargeInt</a></li><li><a href="global.html#OpaqueColor">OpaqueColor</a></li><li><a href="global.html#ReferenceBE">ReferenceBE</a></li><li><a href="global.html#SoundBytes">SoundBytes</a></li><li><a href="global.html#TranslucentColor">TranslucentColor</a></li><li><a href="global.html#TYPE_NAMES">TYPE_NAMES</a></li><li><a href="global.html#TYPES">TYPES</a></li><li><a href="global.html#Uint8">Uint8</a></li><li><a href="global.html#Uint16BE">Uint16BE</a></li><li><a href="global.html#Uint16LE">Uint16LE</a></li><li><a href="global.html#Uint32BE">Uint32BE</a></li><li><a href="global.html#Uint32LE">Uint32LE</a></li><li><a href="global.html#UTF8">UTF8</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Reference</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        Reference
+        </h2>
+        
+            <div class="class-description"><p>A integer reference of an object in an array produced by TypeIterator of
+Values and FieldObjects.</p></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="Reference"><span class="type-signature"></span>new Reference<span class="signature">(classId, position, index)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>classId</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#TYPES">TYPES</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The class identifier of this Field.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>position</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Byte position in the <code>.sb</code> file.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>index</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The index this Reference refers to.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="Field.html">Field</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="classId"><span class="type-signature"></span>classId<span class="type-signature"> :<a href="global.html#TYPES">TYPES</a></span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Field.html#classId">Field#classId</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>The class identifier of this Field.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type"><a href="global.html#TYPES">TYPES</a></span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="index"><span class="type-signature"></span>index<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>The index this Reference refers to.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="position"><span class="type-signature"></span>position<span class="type-signature"> :number</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="Field.html#position">Field#position</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Byte position in the <code>.sb</code> file.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">number</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+
+
+</body>
+</html>
