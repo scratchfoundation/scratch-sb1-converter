@@ -19,6 +19,7 @@ deploy:
 - provider: npm
   on:
     branch: develop
+    node: '8'
   skip_cleanup: true
   email: $NPM_EMAIL
   api_key: $NPM_TOKEN
@@ -26,5 +27,6 @@ deploy:
 - provider: script
   on:
     all_branches: true
+    node: '8'
   skip_cleanup: true
   script: npm run deploy -- -x -e $TRAVIS_BRANCH -r https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
