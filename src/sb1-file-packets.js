@@ -27,7 +27,7 @@ class SB1Signature extends Packet.extend({
      * @throws {AssertionError} Throws if it is not valid.
      */
     validate () {
-        assert(
+        assert.validate(
             this.equals({version: 'ScratchV01'}) ||
             this.equals({version: 'ScratchV02'}),
             'Invalid Scratch file signature.'
@@ -45,7 +45,7 @@ class SB1Header extends Packet.extend({
     numObjects: Uint32BE
 }) {
     validate () {
-        assert(
+        assert.validate(
             this.equals({
                 ObjS: 'ObjS',
                 ObjSValue: 1,
