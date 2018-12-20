@@ -1,6 +1,6 @@
 {
   "name": "scratch-sb1-converter",
-  "version": "0.1.0",
+  "version": "0.0.0-development",
   "description": "Scratch 1 (.sb) to Scratch 2 (.sb2) conversion library for Scratch 3.0",
   "author": "Scratch Foundation",
   "license": "BSD-3-Clause",
@@ -18,7 +18,6 @@
     "deploy": "touch playground/.nojekyll && gh-pages -t -d playground -m \"Build for $(git log --pretty=format:%H -n1)\"",
     "docs": "jsdoc -c .jsdoc.json",
     "lint": "eslint .",
-    "prepublish": "in-publish && npm run build || not-in-publish",
     "start": "webpack-dev-server --output-library-target=umd2",
     "test:ci:build": "babel --presets @babel/preset-env . --out-dir dist/test-tmp --only src,test,index.js --source-maps",
     "test:ci:unit": "npm run test:ci:build && tap ./dist/test-tmp/test/unit",
@@ -28,7 +27,6 @@
     "test:integration": "tap --node-arg=--require --node-arg=@babel/register ./test/integration",
     "test": "npm run lint && npm run docs && npm run test:unit && npm run test:integration",
     "watch": "webpack --progress --colors --watch",
-    "version": "json -f package.json -I -e \"this.repository.sha = '$(git log -n1 --pretty=format:%H)'\"",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
@@ -52,7 +50,6 @@
     "gh-pages": "^1.2.0",
     "html-webpack-plugin": "^3.2.0",
     "husky": "0.14.3",
-    "in-publish": "^2.0.0",
     "jsdoc": "^3.5.5",
     "json": "^9.0.4",
     "semantic-release": "^15.13.1",
