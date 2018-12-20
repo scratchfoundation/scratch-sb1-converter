@@ -9,7 +9,8 @@
     "type": "git",
     "url": "https://github.com/LLK/scratch-sb1-converter.git"
   },
-  "main": "index.js",
+  "main": "playground/main.js",
+  "browser": "index.js",
   "scripts": {
     "build": "npm run docs && webpack --progress --colors --bail",
     "commitmsg": "commitlint -e $GIT_PARAMS",
@@ -18,7 +19,7 @@
     "docs": "jsdoc -c .jsdoc.json",
     "lint": "eslint .",
     "prepublish": "in-publish && npm run build || not-in-publish",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --output-library-target=umd2",
     "test:ci:build": "babel --presets @babel/preset-env . --out-dir dist/test-tmp --only src,test,index.js --source-maps",
     "test:ci:unit": "npm run test:ci:build && tap ./dist/test-tmp/test/unit",
     "test:ci:integration": "npm run test:ci:build && tap ./dist/test-tmp/test/integration",

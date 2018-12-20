@@ -7,8 +7,8 @@
 /.travis.yml
 /test
 
-# Build created files
-/playground
+# Exclude build created docs, but allow other playground/* files
+/playground/docs
 
 # Coverage created files
 /.nyc_output
