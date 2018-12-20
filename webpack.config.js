@@ -14,8 +14,10 @@ module.exports = {
         view: './src/playground/index.js'
     },
     output: {
-        path: path.resolve(__dirname, 'playground')
+        path: path.resolve(__dirname, 'playground'),
+        libraryTarget: 'commonjs2'
     },
+    externals: ['text-encoding'],
     module: {
         rules: [{
             test: /\.js$/,
