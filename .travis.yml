@@ -4,7 +4,6 @@ node_js:
 - node
 cache:
   directories:
-  - ~/.npm
   - node_modules
 install:
   - npm install
@@ -16,7 +15,7 @@ before_deploy:
 - git config --global user.email "$(git log --pretty=format:"%ae" -n1)"
 - git config --global user.name "$(git log --pretty=format:"%an" -n1)"
 deploy:
-- provider: npm
+- provider: script
   on:
     branch: develop
     node: '8'
