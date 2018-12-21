@@ -1,7 +1,6 @@
 import {assert} from '../util/assert';
 
 import {PNGFile} from '../coders/png-file';
-import {WAVFile} from '../coders/wav-file';
 
 class FakeZipFile {
     constructor (file) {
@@ -49,11 +48,7 @@ const toSb2ImageMedia = imageMedia => {
     return imageMedia.decoded;
 };
 
-const toSb2SoundMedia = soundMedia => (
-    new Uint8Array(WAVFile.encode(soundMedia.decoded, {
-        sampleRate: soundMedia.rate && soundMedia.rate.value
-    }))
-);
+const toSb2SoundMedia = soundMedia => soundMedia.wavEncodedData;
 
 const toSb2FakeZipApi = ({images, sounds}) => {
     const files = {};

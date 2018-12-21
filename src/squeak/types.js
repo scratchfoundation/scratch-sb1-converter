@@ -1,10 +1,13 @@
 import {CRC32} from '../coders/crc32';
 import {SqueakImage} from '../coders/squeak-image';
 import {SqueakSound} from '../coders/squeak-sound';
+import {WAVFile} from '../coders/wav-file';
 
 import {FieldObject} from './field-object';
 import {value as valueOf} from './fields';
 import {TYPES} from './ids';
+
+import md5 from 'js-md5';
 
 /**
  * @extends FieldObject
@@ -340,6 +343,22 @@ class SoundMediaData extends FieldObject.define({
 
     get extension () {
         return 'pcm';
+    }
+
+    get wavEncodedData () {
+        if (!this._wavEncodedData) {
+            this._wavEncodedData = new Uint8Array(WAVFile.encode(this.decoded, {
+                sampleRate: this.rate && this.rate.value
+            }));
+        }
+        return this._wavEncodedData;
+    }
+
+    get md5 () {
+        if (!this._md5) {
+            this._md5 = md5(this.wavEncodedData);
+        }
+        return this._md5;
     }
 
     toString () {
