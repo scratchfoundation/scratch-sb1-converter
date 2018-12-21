@@ -203,7 +203,10 @@ const toSb2Json = root => {
             penLayerID: 0,
             tempoBPM: _stageData.tempoBPM,
             videoAlpha: 0.5,
-            children: _stageData.stageContents.map(toSb2JsonChild).filter(Boolean)
+            children: _stageData.stageContents
+                .map(toSb2JsonChild)
+                .filter(Boolean)
+                .reverse()
         };
     };
 
