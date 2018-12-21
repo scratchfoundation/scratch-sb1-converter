@@ -94,7 +94,7 @@ const toSb2Json = root => {
         return {
             soundName: soundMediaData.name,
             soundID,
-            md5: `${md5(soundMediaData.rawBytes)}.wav`,
+            md5: `${soundMediaData.md5}.wav`,
             sampleCount: soundMediaData.sampleCount,
             rate: soundMediaData.rate,
             format: ''
