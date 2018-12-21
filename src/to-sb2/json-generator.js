@@ -1,6 +1,7 @@
 /* eslint no-use-before-define:1 */
 
 import {ImageMediaData, SoundMediaData, SpriteData} from '../squeak/types';
+import md5 from 'js-md5';
 
 const sb1SpecMap = {
     // https://github.com/LLK/scratch-flash/blob/cb5f42f039ef633710faf9c63b69e8368b280372/src/blocks/BlockIO.as#L197-L199
@@ -93,10 +94,7 @@ const toSb2Json = root => {
         return {
             soundName: soundMediaData.name,
             soundID,
-            // TODO: Produce a proper MD5.
-            // Note producing a proper MD5 may not be important since we deliver
-            // the assets through a fake (or possibly in the future) a real zip.
-            md5: `${soundID}.wav`,
+            md5: `${md5(soundMediaData.rawBytes)}.wav`,
             sampleCount: soundMediaData.sampleCount,
             rate: soundMediaData.rate,
             format: ''
@@ -115,10 +113,7 @@ const toSb2Json = root => {
         return {
             costumeName: imageMediaData.costumeName,
             baseLayerID,
-            // TODO: Produce a proper MD5.
-            // Note producing a proper MD5 may not be important since we deliver
-            // the assets through a fake (or possibly in the future) a real zip.
-            baseLayerMD5: `${baseLayerID}.${toSb2ImageExtension(imageMediaData)}`,
+            baseLayerMD5: `${md5(imageMediaData.rawBytes)}.${toSb2ImageExtension(imageMediaData)}`,
             bitmapResolution: 1,
             rotationCenterX: imageMediaData.rotationCenter.x,
             rotationCenterY: imageMediaData.rotationCenter.y
