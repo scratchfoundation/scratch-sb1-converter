@@ -3,6 +3,20 @@
 import {ImageMediaData, SoundMediaData, SpriteData} from '../squeak/types';
 import md5 from 'js-md5';
 
+// https://github.com/LLK/scratch-flash/blob/cb5f42f039ef633710faf9c63b69e8368b280372/src/blocks/BlockIO.as#L292-L308
+const fixMouseEdgeRef = block => {
+    const oldVal = String(block[block.length - 1]);
+    const last = block.length - 1;
+    if (oldVal === 'mouse') {
+        block[last] = '_mouse_';
+    } else if (oldVal === 'edge') {
+        block[last] = '_edge_';
+    } else if (oldVal === 'StageData') {
+        block[last] = '_stage_';
+    }
+    return block;
+};
+
 const sb1SpecMap = {
     // https://github.com/LLK/scratch-flash/blob/cb5f42f039ef633710faf9c63b69e8368b280372/src/blocks/BlockIO.as#L197-L199
     'getParam': ([a, b, c, d]) => [a, b, c, d || 'r'],
@@ -41,7 +55,12 @@ const sb1SpecMap = {
     // https://github.com/LLK/scratch-flash/blob/cb5f42f039ef633710faf9c63b69e8368b280372/src/blocks/BlockIO.as#L271-L273
     'nextBackground': () => ['nextScene'],
     // https://github.com/LLK/scratch-flash/blob/cb5f42f039ef633710faf9c63b69e8368b280372/src/blocks/BlockIO.as#L274-L282
-    'doForeverIf': block => ['doForever', [['doIf', block[1], block[2]]]]
+    'doForeverIf': block => ['doForever', [['doIf', block[1], block[2]]]],
+    'getAttribute:of:': fixMouseEdgeRef,
+    'gotoSpriteOrMouse:': fixMouseEdgeRef,
+    'distanceTo:': fixMouseEdgeRef,
+    'pointTowards:': fixMouseEdgeRef,
+    'touching:': fixMouseEdgeRef
 };
 
 const valueOf = obj => {
