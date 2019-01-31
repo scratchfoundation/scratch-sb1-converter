@@ -1,6 +1,6 @@
 /* eslint no-use-before-define:1 */
 
-import {ImageMediaData, SoundMediaData, SpriteData} from '../squeak/types';
+import {ImageMediaData, SoundMediaData, StageData, SpriteData} from '../squeak/types';
 import md5 from 'js-md5';
 
 // https://github.com/LLK/scratch-flash/blob/cb5f42f039ef633710faf9c63b69e8368b280372/src/blocks/BlockIO.as#L292-L308
@@ -11,7 +11,7 @@ const fixMouseEdgeRef = block => {
         block[last] = '_mouse_';
     } else if (oldVal === 'edge') {
         block[last] = '_edge_';
-    } else if (oldVal === 'StageData') {
+    } else if (block[block.length - 1] instanceof StageData) {
         block[last] = '_stage_';
     }
     return block;
