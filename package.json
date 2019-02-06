@@ -30,9 +30,9 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
+    "js-md5": "0.7.3",
     "minilog": "3.1.0",
-    "text-encoding": "^0.6.4",
-    "js-md5": "0.7.3"
+    "text-encoding": "^0.7.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
