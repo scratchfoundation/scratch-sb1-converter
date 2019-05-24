@@ -14,7 +14,6 @@
   "scripts": {
     "build": "npm run docs && webpack --progress --colors --bail",
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "coverage": "tap ./test/{unit,integration}/*.js --coverage --coverage-report=lcov",
     "deploy": "touch playground/.nojekyll && gh-pages -t -d playground -m \"Build for $(git log --pretty=format:%H -n1)\"",
     "docs": "jsdoc -c .jsdoc.json",
     "lint": "eslint .",
@@ -25,6 +24,7 @@
     "test:ci": "npm run test:ci:build && tap ./dist/test-tmp/test",
     "test:unit": "tap --node-arg=--require --node-arg=@babel/register ./test/unit",
     "test:integration": "tap --node-arg=--require --node-arg=@babel/register ./test/integration",
+    "test:coverage": "tap --node-arg=--require --node-arg=@babel/register ./test/{unit,integration}/*.js --coverage --coverage-report=lcov",
     "test": "npm run lint && npm run docs && npm run test:unit && npm run test:integration",
     "watch": "webpack --progress --colors --watch",
     "semantic-release": "semantic-release"
