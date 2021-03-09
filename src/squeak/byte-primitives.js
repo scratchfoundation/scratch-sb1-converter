@@ -1,4 +1,4 @@
-import {TextDecoder as JSTextDecoder} from 'text-encoding';
+import {TextDecoder as JSTextDecoder} from 'fastestsmallesttextencoderdecoder';
 
 import {assert} from '../util/assert';
 
