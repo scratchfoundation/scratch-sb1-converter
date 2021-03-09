@@ -17,7 +17,6 @@ module.exports = {
         path: path.resolve(__dirname, 'playground'),
         libraryTarget: 'commonjs2'
     },
-    externals: ['text-encoding'],
     module: {
         rules: [{
             test: /\.js$/,
