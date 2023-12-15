@@ -1,6 +1,6 @@
 {
   "name": "scratch-sb1-converter",
-  "version": "0.0.0-development",
+  "version": "0.0.0",
   "description": "Scratch 1 (.sb) to Scratch 2 (.sb2) conversion library for Scratch 3.0",
   "author": "Scratch Foundation",
   "license": "BSD-3-Clause",
@@ -54,7 +54,8 @@
     "husky": "8.0.3",
     "jsdoc": "^3.6.2",
     "json": "^9.0.4",
-    "semantic-release": "^15.13.1",
+    "scratch-semantic-release-config": "1.0.8",
+    "semantic-release": "19.0.5",
     "tap": "^12.0.1",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
@@ -64,8 +65,5 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "release": {
-    "branch": "develop"
   }
 }
