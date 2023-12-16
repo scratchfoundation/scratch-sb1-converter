@@ -9,7 +9,6 @@ class ProxyStream {
 
     set uint8a (value) {
         this.stream.uint8a = value;
-        return this.stream.uint8a;
     }
 
     get position () {
@@ -18,7 +17,6 @@ class ProxyStream {
 
     set position (value) {
         this.stream.position = value;
-        return this.stream.position;
     }
 
     writeStruct (StructType, data) {

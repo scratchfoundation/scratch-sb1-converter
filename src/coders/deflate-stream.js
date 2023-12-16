@@ -27,7 +27,6 @@ class DeflateStream extends ProxyStream {
     set _deflateIndex (value) {
         this.chunk.length = value;
         this.chunk.lengthCheck = value ^ 0xffff;
-        return this.chunk.length;
     }
 
     writeStruct (StructType, data) {

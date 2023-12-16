@@ -138,7 +138,6 @@ const Bitmap32BE = new BytePrimitive({
 });
 
 let decoder;
-/* global TextDecoder:true */
 if (typeof TextDecoder === 'undefined') {
     decoder = new JSTextDecoder();
 } else {
