@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v1.0.0...v1.0.1) (2024-02-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-config-scratch to v9.0.4 ([801ca1f](https://github.com/scratchfoundation/scratch-sb1-converter/commit/801ca1fc3a6de7b16e57f4d7073e39a2dd059808))
+
 # [1.0.0](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v0.2.9...v1.0.0) (2024-02-21)
 
 
