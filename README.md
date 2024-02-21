@@ -1,5 +1,7 @@
 # scratch-sb1-converter
 
+Scratch 1 (.sb) to Scratch 2 (.sb2) conversion library for Scratch 3.0
+
 ## Committing
 
 This project uses [semantic release](https://github.com/semantic-release/semantic-release) to ensure version bumps
