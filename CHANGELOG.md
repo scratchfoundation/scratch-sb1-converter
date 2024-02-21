@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v0.2.9...v1.0.0) (2024-02-21)
+
+
+### Documentation
+
+* add description to README.md ([61780f3](https://github.com/scratchfoundation/scratch-sb1-converter/commit/61780f3d5d1d11661d0d1e67208b7b8bbb923b42))
+
+
+### BREAKING CHANGES
+
+* trying again to bump this to v1.x
+
 ## [0.2.9](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v0.2.8...v0.2.9) (2024-02-21)
 
 
