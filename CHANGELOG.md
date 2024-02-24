@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v1.0.5...v1.0.6) (2024-02-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency scratch-semantic-release-config to v1.0.14 ([6a110e8](https://github.com/scratchfoundation/scratch-sb1-converter/commit/6a110e87dbd2ae0963521c93da8881f28833e4a9))
+
 ## [1.0.5](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v1.0.4...v1.0.5) (2024-02-22)
 
 
