@@ -1,6 +1,6 @@
 {
   "name": "scratch-sb1-converter",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Scratch 1 (.sb) to Scratch 2 (.sb2) conversion library for Scratch 3.0",
   "author": "Scratch Foundation",
   "license": "BSD-3-Clause",
