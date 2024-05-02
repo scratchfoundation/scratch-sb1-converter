@@ -36,10 +36,10 @@
     "text-encoding": "^0.7.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.24.1",
-    "@babel/core": "7.24.4",
-    "@babel/eslint-parser": "7.24.1",
-    "@babel/preset-env": "7.24.4",
+    "@babel/cli": "7.24.5",
+    "@babel/core": "7.24.5",
+    "@babel/eslint-parser": "7.24.5",
+    "@babel/preset-env": "7.24.5",
     "@babel/register": "7.23.7",
     "@commitlint/cli": "18.6.1",
     "@commitlint/config-conventional": "18.6.3",
