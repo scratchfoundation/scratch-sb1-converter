@@ -46,7 +46,7 @@
     "babel-eslint": "10.1.0",
     "babel-loader": "8.4.1",
     "docdash": "1.2.0",
-    "eslint": "8.57.0",
+    "eslint": "8.57.1",
     "eslint-config-scratch": "9.0.9",
     "gh-pages": "1.2.0",
     "html-webpack-plugin": "3.2.0",
