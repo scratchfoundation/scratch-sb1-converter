@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.251](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v2.0.250...v2.0.251) (2025-10-15)
+
+
+### Bug Fixes
+
+* **deps:** lock file maintenance ([7a6527d](https://github.com/scratchfoundation/scratch-sb1-converter/commit/7a6527dc2d398e427183cc43731e73a0adda7bd6))
+
 ## [2.0.250](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v2.0.249...v2.0.250) (2025-10-14)
 
 
