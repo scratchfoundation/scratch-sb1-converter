@@ -52,7 +52,7 @@
     "html-webpack-plugin": "3.2.0",
     "husky": "8.0.3",
     "jsdoc": "3.6.11",
-    "json": "^9.0.4",
+    "json": "^11.0.0",
     "scratch-semantic-release-config": "3.0.0",
     "semantic-release": "19.0.5",
     "tap": "12.7.0",
