@@ -3,6 +3,7 @@ const path = require('path');
 const test = require('tap').test;
 
 const {SB1File} = require('../..');
+const {toSb2Json} = require('../../src/to-sb2/json-generator');
 
 test('bouncing-music-balls', t => {
     const uri = path.resolve(__dirname, '../fixtures/valid/bouncing-music-balls.sb');
@@ -119,5 +120,23 @@ test('ewe-and-me', t => {
     t.equal(json.videoAlpha, 0.5);
     t.type(json.info, Object);
 
+    t.end();
+});
+
+test('legacy projects without sprite library ordering', t => {
+    const uri = path.resolve(__dirname, '../fixtures/valid/default.sb');
+    const sb1 = new SB1File(fs.readFileSync(uri));
+    const stageData = sb1.data();
+
+    delete stageData.fields[stageData.FIELDS.SPRITE_ORDER_IN_LIBRARY];
+
+    const json = toSb2Json({
+        info: sb1.info(),
+        stageData,
+        images: sb1.images(),
+        sounds: sb1.sounds()
+    });
+
+    t.equal(json.children[0].indexInLibrary, -1);
     t.end();
 });
