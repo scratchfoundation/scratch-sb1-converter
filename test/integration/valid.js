@@ -121,3 +121,16 @@ test('ewe-and-me', t => {
 
     t.end();
 });
+
+test('legacy projects without sprite library ordering', t => {
+    const uri = path.resolve(__dirname, '../fixtures/valid/default.sb');
+    const sb1 = new SB1File(fs.readFileSync(uri));
+    const stageData = sb1.data();
+
+    delete stageData.fields[stageData.FIELDS.SPRITE_ORDER_IN_LIBRARY];
+
+    const json = sb1.json;
+
+    t.same(json.children.map(child => child.indexInLibrary), [-1]);
+    t.end();
+});

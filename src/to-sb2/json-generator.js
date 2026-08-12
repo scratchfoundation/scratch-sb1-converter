@@ -190,7 +190,8 @@ const toSb2Json = root => {
             direction: (Math.round(spriteData.rotationDegrees * 1e6) / 1e6) - 270,
             rotationStyle: spriteData.rotationStyle,
             isDraggable: spriteData.draggable,
-            indexInLibrary: stageData.spriteOrderInLibrary.indexOf(spriteData),
+            indexInLibrary: stageData.spriteOrderInLibrary ?
+                stageData.spriteOrderInLibrary.indexOf(spriteData) : -1,
             visible: spriteData.visible,
             spriteInfo: {}
         };
