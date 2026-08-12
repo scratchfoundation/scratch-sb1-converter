@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.280](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v2.0.279...v2.0.280) (2026-08-12)
+
+
+### Bug Fixes
+
+* apply a fix for older files, that lack a field necessary for sb2 files ([3e51e25](https://github.com/scratchfoundation/scratch-sb1-converter/commit/3e51e2520404d016379830663a2029378f59810b))
+* fix the test ([ba37b2f](https://github.com/scratchfoundation/scratch-sb1-converter/commit/ba37b2fe45c8648b19eeaaa336003060d1b47040))
+
 ## [2.0.279](https://github.com/scratchfoundation/scratch-sb1-converter/compare/v2.0.278...v2.0.279) (2025-11-18)
 
 
