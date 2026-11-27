@@ -1,3 +1,5 @@
+import {assert} from './util/assert';
+
 import {ByteStream} from './coders/byte-stream';
 
 import {ByteTakeIterator} from './squeak/byte-take-iterator';
